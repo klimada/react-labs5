@@ -9,7 +9,9 @@ class GameAdmin extends React.Component {
         namePlayerOne: '',
         namePlayerTwo: '',
         buttonOne:true,
-        buttonTwo:false
+        buttonTwo:false,
+        numberofgamesOne:1,
+        numberofgamesTwo:0
       };
     this.nameOneChange = this.nameOneChange.bind(this);
     this.nameTwoChange = this.nameTwoChange.bind(this);
@@ -18,29 +20,33 @@ class GameAdmin extends React.Component {
   }
 
   nameOneChange(event) {
+    const numberofgamesOne = 0;
     const namePlayerOne = event.target.value;
-    this.setState({namePlayerOne});
+    this.setState({namePlayerOne,numberofgamesOne});
   }
 
   nameTwoChange(event) {
+    const numberofgamesTwo = 0;
     const namePlayerTwo = event.target.value;
-    this.setState({namePlayerTwo});
+    this.setState({namePlayerTwo,numberofgamesTwo});
   }
 
   buttonOnePressed(event) {
-    this.setState({buttonOne:true,buttonTwo:false});
+    const numberofgamesOne = this.state.numberofgamesOne+1;
+    this.setState({buttonOne:true,buttonTwo:false,numberofgamesOne});
   }
 
   buttonTwoPressed(event) {
-    this.setState({buttonOne:false,buttonTwo:true});
+    const numberofgamesTwo = this.state.numberofgamesTwo+1;
+    this.setState({buttonOne:false,buttonTwo:true,numberofgamesTwo});
   }
 
 render() {
     return (
     <div>
-        <PlayerOne name={this.state.namePlayerOne} pressed={this.state.buttonOne} whenclick={this.buttonOnePressed}/>
+        <PlayerOne numberofgames={this.state.numberofgamesOne} name={this.state.namePlayerOne} pressed={this.state.buttonOne} whenclick={this.buttonOnePressed}/>
         <br/>
-        <PlayerTwo name={this.state.namePlayerTwo} pressed={this.state.buttonTwo} whenclick={this.buttonTwoPressed}/>
+        <PlayerTwo numberofgames={this.state.numberofgamesTwo} name={this.state.namePlayerTwo} pressed={this.state.buttonTwo} whenclick={this.buttonTwoPressed}/>
         <br/>
         <label> Set Name of Player One:
          <input type="text" name="namePlayerOne" value={this.state.namePlayerOne} onChange={this.nameOneChange} />
