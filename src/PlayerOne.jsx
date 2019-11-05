@@ -7,6 +7,13 @@ class PlayerOne extends React.Component {
 
   }
 
+  changetext(pressed){
+    if(pressed)
+        return "This player is playing";
+    else
+        return "Play";
+  }
+
   render() {
     return (
     <div>
@@ -14,6 +21,7 @@ class PlayerOne extends React.Component {
         <label>Name  </label>
         <label >{this.props.name}</label><br/>
         <label>Played number of times</label>
+        <button  onClick={this.props.whenclick} disabled={this.props.pressed}>{this.changetext(this.props.pressed)}</button>
     </div>
     );
 }
